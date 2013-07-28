@@ -34,7 +34,7 @@ unzip batch-importer.zip -d ~/neo4j-importer
 cd ~/neo4j-importer
 ````
 
-3. Create a file names [nodes.csv](examples/nodes.csv) which contains some nodes that you want to import. The file should contain a header listing the node's fields. One of those fields *must* be called 'id' and is used to identify the node.
+3. Create a file names [nodes.csv](examples/nodes.csv) which contains the nodes that you want to import. The file should contain a header listing the node's fields. One of those fields *must* be called 'id' and is used to identify the node.
 
 e.g.
 
@@ -66,6 +66,6 @@ from	to	type	timeInMonths
 5. Import your data into neo4j
 
 ````
-neo4j-importer
+./bin/neo4j-importer
 Successfully imported 1 node and 1 relationship
 ````
