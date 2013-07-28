@@ -1,12 +1,10 @@
 *This is a work in progress, it doesn't do everything it says below yet*
 
-# Import data into your Neo4j database from the command line
+# An easy to use tool for importing data into neo4j
 
-neo4j importer is a command line tool which makes it easy to import data in a variety of different formats into your database. 
+neo4j importer is a command line tool which makes it easy to import data in a variety of different formats into your database. It will eventually support CSV, [GraphML](http://graphml.graphdrawing.org/) and [Geoff](http://nigelsmall.com/geoff) but we're open to suggestions for other formats that you'd like to see.
 
-It will eventually support CSV, [GraphML](http://graphml.graphdrawing.org/) and [Geoff](http://nigelsmall.com/geoff) but we're open to suggestions for other formats that you'd like to see.
-
-# Installation
+## Installation
 
 1. Download the neo4j-importer zip file.
 
@@ -22,7 +20,7 @@ unzip batch-importer.zip -d ~/neo4j-importer
 
 3. That's it!
 
-# Usage
+## Usage
 
 1. Ensure you have a neo4j server running 
 
