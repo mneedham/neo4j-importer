@@ -38,11 +38,11 @@ unzip batch-importer.zip -d ~/neo4j-importer
 The file should contain a header listing the node's fields. One of those fields *must* be called 'id' and is used to identify the node.
 
 e.g.
-
+    
     ~~~ sh
     echo -e "id\tname\n1\tMark\n2\tAndreas" > nodes.csv
     ~~~
-
+    
     ~~~ sh
     cat nodes.csv
     id	name
