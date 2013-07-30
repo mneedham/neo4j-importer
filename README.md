@@ -39,9 +39,9 @@ The file should contain a header listing the node's fields. One of those fields 
 
 e.g.
 
-    ~~~ sh
+    ````
     echo -e "id\tname\n1\tMark\n2\tAndreas" > nodes.csv
-    ~~~
+    ````
 
     ````
     cat nodes.csv
