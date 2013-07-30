@@ -34,7 +34,9 @@ unzip batch-importer.zip -d ~/neo4j-importer
 cd ~/neo4j-importer
 ````
 
-3. Create a file names [nodes.csv](examples/nodes.csv) which contains the nodes that you want to import. The file should contain a header listing the node's fields. One of those fields *must* be called 'id' and is used to identify the node.
+3. Create a file names [nodes.csv](examples/nodes.csv) which contains the nodes that you want to import. 
+
+The file should contain a header listing the node's fields. One of those fields *must* be called 'id' and is used to identify the node.
 
 e.g.
 
@@ -49,7 +51,9 @@ id	name
 2	Andreas
 ````
 
-4. Create a file named [relationships.csv](examples/relationships.csv) which contains relationships between the nodes defined in nodes.csv. The file should contain a header with the fields 'from', 'to', 'type' and can also contain fields for properties on the relationship. The 'from' and 'to' fields use the values defined in the 'id' field in nodes.csv.
+4. Create a file named [relationships.csv](examples/relationships.csv) which contains relationships between the nodes defined in nodes.csv. 
+
+The file should contain a header with the fields 'from', 'to', 'type' and can also contain fields for properties on the relationship. The 'from' and 'to' fields use the values defined in the 'id' field in nodes.csv.
 
 e.g.
 
