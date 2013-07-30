@@ -42,7 +42,7 @@ e.g.
     ~~~ sh
     echo -e "id\tname\n1\tMark\n2\tAndreas" > nodes.csv
     ~~~
-    
+
     ~~~ sh
     cat nodes.csv
     id	name
