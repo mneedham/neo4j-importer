@@ -38,17 +38,17 @@ unzip batch-importer.zip -d ~/neo4j-importer
 The file should contain a header listing the node's fields. One of those fields *must* be called 'id' and is used to identify the node.
 
 e.g.
-    
+
     ~~~ sh
     echo -e "id\tname\n1\tMark\n2\tAndreas" > nodes.csv
     ~~~
 
-    ~~~ sh
+    ````
     cat nodes.csv
     id	name
     1	Mark
-    2	Andreas
-    ~~~
+	2	Andreas
+	````
 
 4. Create a file named [relationships.csv](examples/relationships.csv) which contains relationships between the nodes defined in nodes.csv. 
 The file should contain a header with the fields 'from', 'to', 'type' and can also contain fields for properties on the relationship. The 'from' and 'to' fields use the values defined in the 'id' field in nodes.csv.
