@@ -24,15 +24,15 @@ unzip batch-importer.zip -d ~/neo4j-importer
 
 1. Ensure you have a neo4j server running 
 
-````
-/path/to/neo4j-installation/bin/neo4j start
-````
+    ~~~ sh
+    /path/to/neo4j-installation/bin/neo4j start
+    ~~~
 
 2. Navigate on your machine to the folder where you unzipped neo4j-importer.
 
-````
-cd ~/neo4j-importer
-````
+    ~~~ sh
+    cd ~/neo4j-importer
+    ~~~ 
 
 3. Create a file names [nodes.csv](examples/nodes.csv) which contains the nodes that you want to import. 
 The file should contain a header listing the node's fields. One of those fields *must* be called 'id' and is used to identify the node.
