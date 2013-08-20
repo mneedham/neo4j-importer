@@ -42,7 +42,7 @@ public class Neo4jServer {
     }
 
     public ClientResponse importRelationships(Relationships relationships, CreateNodesResponse createNodesResponse) {
-        int batchSize = 300;
+        int batchSize = 50;
         Map<String, Long> nodeMappings = createNodesResponse.nodeMappings();
 
         String query = "START ";

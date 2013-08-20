@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1c2943d6-1727-49d5-963b-367dabc5857e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" afterPath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/nodes.csv" afterPath="$PROJECT_DIR$/examples/nodes.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/relationships.csv" afterPath="$PROJECT_DIR$/relationships.csv" />
     </list>
     <ignored path="neo4j-importer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -129,7 +127,7 @@
       <file leaf-file-name="Neo4jServer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="26" selection-start="1708" selection-end="1708" vertical-scroll-proportion="0.2877907">
+            <state line="44" column="25" selection-start="1707" selection-end="1707" vertical-scroll-proportion="0.2877907">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -723,7 +721,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="26" selection-start="1708" selection-end="1708" vertical-scroll-proportion="0.2877907">
+        <state line="44" column="25" selection-start="1707" selection-end="1707" vertical-scroll-proportion="0.2877907">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
