@@ -1,4 +1,5 @@
 repositories.remote << 'http://repo1.maven.org/maven2'
+repositories.remote << 'http://repo.bodar.com/'
 
 dependencies = []
 dependencies << 'net.sf.opencsv:opencsv:jar:2.0'
@@ -6,6 +7,9 @@ dependencies << 'com.sun.jersey:jersey-bundle:jar:1.17.1'
 dependencies << 'org.codehaus.jackson:jackson-core-asl:jar:1.9.4'
 dependencies << 'org.codehaus.jackson:jackson-mapper-asl:jar:1.9.4'
 dependencies << 'org.codehaus.jackson:jackson-jaxrs:jar:1.9.4'
+dependencies << 'org.mockito:mockito-all:jar:1.8.4'
+dependencies << 'com.googlecode.totallylazy:totallylazy:jar:1049'
+dependencies << 'commons-lang:commons-lang:jar:1.0'
 
 define 'neo4j-importer' do
   project.version = '0.1.0'
