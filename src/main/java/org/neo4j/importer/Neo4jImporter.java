@@ -37,7 +37,7 @@ public class Neo4jImporter {
     public static void main(String[] args) throws IOException {
         Nodes nodes = new Nodes(new File("nodes.csv"));
         Relationships relationships = new Relationships(new File("relationships.csv"));
-        Neo4jServer neo4jServer = new Neo4jServer(jerseyClient());
+        Neo4jServer neo4jServer = new Neo4jServer(jerseyClient(), 50);
 
         new Neo4jImporter(neo4jServer, nodes, relationships).run();
     }

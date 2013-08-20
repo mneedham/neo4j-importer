@@ -9,7 +9,7 @@ import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
-import org.junit.Ignore;
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.ws.rs.core.MediaType;
@@ -24,8 +24,15 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class Neo4jImporterTest {
+    @Before
+    public void clearDb() {
+        ObjectNode cypherQuery = JsonNodeFactory.instance.objectNode();
+        cypherQuery.put("query", "START n = node(*) MATCH n-[r?]-m DELETE m,r,n");
+        cypherQuery.put("params", JsonNodeFactory.instance.objectNode());
+        postCypherQuery(jerseyClient(), cypherQuery);
+    }
+
     @Test
-    @Ignore
     public void shouldImportTwoNodesAndARelationshipBetweenThem() {
         Client client = jerseyClient();
 
@@ -35,32 +42,42 @@ public class Neo4jImporterTest {
         ArrayNode createNodesParameters = JsonNodeFactory.instance.arrayNode();
         createNodesParameters.add(node("1", "Mark"));
         createNodesParameters.add(node("2", "Andreas"));
+        createNodesParameters.add(node("3", "Peter"));
+        createNodesParameters.add(node("4", "Michael"));
+        createNodesParameters.add(node("5", "Jim"));
         when(nodes.queryParameters()).thenReturn(createNodesParameters);
 
         List<Map<String, Object>> relationshipsProperties = new ArrayList<Map<String, Object>>();
         relationshipsProperties.add(relationship("1", "2", "FRIEND_OF"));
+        relationshipsProperties.add(relationship("2", "3", "FRIEND_OF"));
 
         when(relationships.get()).thenReturn(relationshipsProperties);
 
-        new Neo4jImporter(new Neo4jServer(client), nodes, relationships).run();
+        new Neo4jImporter(new Neo4jServer(client, 1), nodes, relationships).run();
 
-        String query = " START p1 = node:node_auto_index(name=\"Mark\"), p2 = node:node_auto_index(name=\"Andreas\")";
-        query       += " MATCH p1-[:FRIEND_OF]->p2";
-        query       += " RETURN p1.name, p2.name";
+        String query = " START n = node(*)";
+        query       += " MATCH n-[:FRIEND_OF]->p2";
+        query       += " RETURN n.name, p2.name";
 
         ObjectNode cypherQuery = JsonNodeFactory.instance.objectNode();
         cypherQuery.put("query", query);
         cypherQuery.put("params", JsonNodeFactory.instance.objectNode());
 
-        ClientResponse clientResponse = client.
+        ClientResponse clientResponse = postCypherQuery(client, cypherQuery);
+
+        JsonNode rows = clientResponse.getEntity(JsonNode.class).get("data");
+
+        assertEquals(2, rows.size());
+        assertEquals("[\"Mark\",\"Andreas\"]", rows.get(0).toString());
+        assertEquals("[\"Andreas\",\"Peter\"]", rows.get(1).toString());
+    }
+
+    private ClientResponse postCypherQuery(Client client, ObjectNode cypherQuery) {
+        return client.
                 resource("http://localhost:7474/db/data/cypher").
                 accept(MediaType.APPLICATION_JSON).
                 entity(cypherQuery, MediaType.APPLICATION_JSON).
                 post(ClientResponse.class);
-
-        JsonNode response = clientResponse.getEntity(JsonNode.class);
-        System.out.println("clientResponse.getEntity(String.class) = " + response);
-        assertEquals(2, response.get("data").size());
     }
 
     private Map<String, Object> relationship(String from, String to, String type) {
