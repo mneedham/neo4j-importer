@@ -53,25 +53,26 @@ public class Neo4jServer {
         ClientResponse response = null;
         for (int i = 0; i < rels.size(); i+= batchSize) {
             final Sequence<Map<String, Object>> relsToImport = sequence(rels).drop(i).take(batchSize);
-            Sequence<Object> cypherRelationshipStatements = map(relsToImport, createRelationship());
 
-            Sequence<Map.Entry<String, Long>> filteredMappings = filter(nodeMappings.entrySet(), new Predicate<Map.Entry<String, Long>>() {
-                public boolean matches(Map.Entry<String, Long> idToNodeId) {
-                    String id = idToNodeId.getKey();
-                    for (Map<String, Object> fields : relsToImport) {
-                        if (fields.get("to").toString().equals(id) || fields.get("from").toString().equals(id)) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-            });
-
-
-            response = postCypherQuery(cypherRelationshipStatements.iterator(), filteredMappings);
+            response = postCypherQuery(relsToImport.map(createRelationship()).iterator(),
+                                       filter(nodeMappings.entrySet(), existsInRelationshipsBatch(relsToImport)));
         }
 
         return response;
+    }
+
+    private Predicate<Map.Entry<String, Long>> existsInRelationshipsBatch(final Sequence<Map<String, Object>> relsToImport) {
+        return new Predicate<Map.Entry<String, Long>>() {
+            public boolean matches(Map.Entry<String, Long> idToNodeId) {
+                String id = idToNodeId.getKey();
+                for (Map<String, Object> fields : relsToImport) {
+                    if (fields.get("to").toString().equals(id) || fields.get("from").toString().equals(id)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        };
     }
 
     private ClientResponse postCypherQuery(Iterator<Object> relationships, Sequence<Map.Entry<String,Long>> nodeMappings) {
