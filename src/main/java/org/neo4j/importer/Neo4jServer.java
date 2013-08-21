@@ -10,7 +10,6 @@ import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
 
 import javax.ws.rs.core.MediaType;
-import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -52,16 +51,14 @@ public class Neo4jServer {
 
         ClientResponse response = null;
         for (int i = 0; i < rels.size(); i+= batchSize) {
-            final Sequence<Map<String, Object>> relsToImport = sequence(rels).drop(i).take(batchSize);
-
-            response = postCypherQuery(relsToImport.map(createRelationship()).iterator(),
-                                       filter(nodeMappings.entrySet(), existsInRelationshipsBatch(relsToImport)));
+            final Sequence<Map<String, Object>> relationshipsBatch = sequence(rels).drop(i).take(batchSize);
+            response = postCypherQuery(relationshipsBatch, filter(nodeMappings.entrySet(), existsIn(relationshipsBatch)));
         }
 
         return response;
     }
 
-    private Predicate<Map.Entry<String, Long>> existsInRelationshipsBatch(final Sequence<Map<String, Object>> relsToImport) {
+    private Predicate<Map.Entry<String, Long>> existsIn(final Sequence<Map<String, Object>> relsToImport) {
         return new Predicate<Map.Entry<String, Long>>() {
             public boolean matches(Map.Entry<String, Long> idToNodeId) {
                 String id = idToNodeId.getKey();
@@ -75,10 +72,10 @@ public class Neo4jServer {
         };
     }
 
-    private ClientResponse postCypherQuery(Iterator<Object> relationships, Sequence<Map.Entry<String,Long>> nodeMappings) {
+    private ClientResponse postCypherQuery(Sequence<Map<String, Object>> relationships, Sequence<Map.Entry<String,Long>> nodeMappings) {
         String query = "START ";
         query += join(map(nodeMappings, nodeLookup()).iterator(), ", ");
-        query += join(relationships, " ");
+        query += join(relationships.map(createRelationship()).iterator(), " ");
 
         ObjectNode cypherQuery = JsonNodeFactory.instance.objectNode();
         cypherQuery.put("query", query);

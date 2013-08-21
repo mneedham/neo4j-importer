@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c2943d6-1727-49d5-963b-367dabc5857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" afterPath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" afterPath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/import-times.txt" afterPath="$PROJECT_DIR$/import-times.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/nodes.csv" afterPath="$PROJECT_DIR$/examples/nodes.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/relationships.csv" afterPath="$PROJECT_DIR$/relationships.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neo4j-importer.iws" afterPath="$PROJECT_DIR$/neo4j-importer.iws" />
     </list>
     <ignored path="neo4j-importer.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Neo4jServer.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377041030541" ignored="false" />
+    <file path="/Neo4jServer.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377045255693" ignored="false" />
     <file path="/Neo4jImporterTest.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377039433103" ignored="false" />
     <file path="/relationships.csv" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377030079421" ignored="false" />
     <file path="/nodes.csv" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377028695237" ignored="false" />
@@ -83,7 +80,7 @@
   </component>
   <component name="DebuggerManager">
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" line="94" class="org.neo4j.importer.Neo4jServer" package="org.neo4j.importer">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" line="92" class="org.neo4j.importer.Neo4jServer" package="org.neo4j.importer">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -144,14 +141,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Neo4jServer.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Neo4jServer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="0" selection-start="3382" selection-end="3382" vertical-scroll-proportion="0.30273438">
+            <state line="74" column="27" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2451#2962#0" expanded="true" />
-                <element signature="e#2947#2948#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,28 +161,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Map.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/util/Map.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="44" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Neo4jImporterTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="56" column="0" selection-start="2201" selection-end="2201" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1872#1893#0" expanded="false" />
+                <element signature="e#3365#3381#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Neo4jImporter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="73" selection-start="1054" selection-end="1054" vertical-scroll-proportion="0.62857145">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Neo4jImporter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java">
+      <file leaf-file-name="relationships.csv" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/relationships.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="68" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.0">
+            <state line="9" column="26" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -223,8 +222,8 @@
         <option value="$PROJECT_DIR$/buildfile" />
         <option value="$PROJECT_DIR$/nodes.csv" />
         <option value="$PROJECT_DIR$/relationships.csv" />
-        <option value="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" />
       </list>
     </option>
@@ -570,7 +569,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1366" height="673" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -710,13 +709,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/relationships.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="26" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nodes.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state line="1001" column="0" selection-start="44515" selection-end="44515" vertical-scroll-proportion="0.0">
@@ -724,23 +716,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="0" selection-start="2201" selection-end="2201" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="68" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar!/java/util/Map.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="44" selection-start="590" selection-end="590" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="2201" selection-end="2201" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1872#1893#0" expanded="false" />
+            <element signature="e#3365#3381#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/relationships.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="26" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -754,12 +750,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="0" selection-start="3382" selection-end="3382" vertical-scroll-proportion="0.30273438">
+        <state line="74" column="27" selection-start="3028" selection-end="3028" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2451#2962#0" expanded="true" />
-            <element signature="e#2947#2948#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="73" selection-start="1054" selection-end="1054" vertical-scroll-proportion="0.62857145">
+          <folding />
         </state>
       </provider>
     </entry>

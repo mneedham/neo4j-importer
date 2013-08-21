@@ -9,8 +9,14 @@ Batch Size	Import Time
 300			6.613, 6.347, 6.069
 
 Nodes: 1000
-Relationships: 25361
+Relationships: 25061
+(filtering on node lookups)
 
 Batch Size	Import Time
-50			127.980
-50			133.373     (filtering on node lookups)
+50			133.373     
+100			94.424
+150         77.282, 76.542
+200 		74.723
+250 		75.662
+300			77.058
+500			107.687
