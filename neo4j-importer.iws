@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c2943d6-1727-49d5-963b-367dabc5857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/relationships.csv" afterPath="$PROJECT_DIR$/relationships.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" afterPath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" afterPath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neo4j-importer.iml" afterPath="$PROJECT_DIR$/neo4j-importer.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neo4j-importer.ipr" afterPath="$PROJECT_DIR$/neo4j-importer.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neo4j-importer.iws" afterPath="$PROJECT_DIR$/neo4j-importer.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/nodes.csv" afterPath="$PROJECT_DIR$/examples/nodes.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/relationships.csv" afterPath="$PROJECT_DIR$/relationships.csv" />
     </list>
     <ignored path="neo4j-importer.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Neo4jServer.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379492736514" ignored="false" />
+    <file path="/Neo4jServer.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379504088559" ignored="false" />
     <file path="/Neo4jImporterTest.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377039433103" ignored="false" />
     <file path="/relationships.csv" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377030079421" ignored="false" />
     <file path="/nodes.csv" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377028695237" ignored="false" />
     <file path="/Dummy.txt" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379491605072" ignored="false" />
-    <file path="/fragment.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379488901399" ignored="false" />
+    <file path="/fragment.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379511012765" ignored="false" />
     <file path="/CreateNodesResponse.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377022923859" ignored="false" />
     <file path="/a.dummy" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1376892318975" ignored="false" />
     <file path="$PROJECT_DIR$/../graph-processing/graphstream/src/main/java/Neo4jAdjacencyMatrixSpike.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1376609398776" ignored="false" />
@@ -56,7 +55,7 @@
     <file path="$PROJECT_DIR$/../neo4j/community/kernel/src/main/java/org/neo4j/kernel/InternalAbstractGraphDatabase.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1376608287575" ignored="false" />
     <file path="$PROJECT_DIR$/../neo4j/community/server/src/main/java/org/neo4j/server/configuration/Configurator.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1376608287575" ignored="false" />
     <file path="$PROJECT_DIR$/../neo4j/community/kernel/src/main/java/org/neo4j/kernel/impl/util/RelIdArray.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1376608287575" ignored="false" />
-    <file path="/Neo4jImporter.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1375224729501" ignored="false" />
+    <file path="/Neo4jImporter.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379510907951" ignored="false" />
     <file path="/Relationships.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1375137695149" ignored="false" />
     <file path="/RelationshipsTest.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1375137408116" ignored="false" />
     <file path="/NodesTest.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1375133595090" ignored="false" />
@@ -134,12 +133,20 @@
       <file leaf-file-name="Neo4jServer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="0" selection-start="3511" selection-end="4092" vertical-scroll-proportion="0.4692483">
+            <state line="124" column="0" selection-start="4991" selection-end="4991" vertical-scroll-proportion="0.7785388">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#5990#6012#0" expanded="true" />
-                <element signature="e#6118#6134#0" expanded="true" />
-                <element signature="e#6286#6302#0" expanded="true" />
+                <element signature="e#3277#3824#0" expanded="true" />
+                <element signature="e#3813#3814#0" expanded="true" />
+                <element signature="e#5513#5535#0" expanded="true" />
+                <element signature="e#5972#5988#0" expanded="true" />
+                <element signature="e#6113#6129#0" expanded="true" />
+                <element signature="e#8155#8741#0" expanded="true" />
+                <element signature="e#8730#8731#0" expanded="true" />
+                <element signature="e#8864#9397#0" expanded="true" />
+                <element signature="e#9386#9387#0" expanded="true" />
+                <element signature="e#9498#9787#0" expanded="true" />
+                <element signature="e#9776#9777#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,7 +173,7 @@
       <file leaf-file-name="Neo4jImporter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="75" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.0">
+            <state line="34" column="30" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -203,8 +210,8 @@
         <option value="$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java" />
         <option value="$PROJECT_DIR$/nodes.csv" />
         <option value="$PROJECT_DIR$/examples/nodes.csv" />
-        <option value="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" />
       </list>
     </option>
   </component>
@@ -212,7 +219,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="x" value="-1" />
+    <option name="y" value="24" />
     <option name="width" value="1680" />
     <option name="height" value="1024" />
   </component>
@@ -464,6 +472,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
@@ -483,6 +492,31 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Neo4jImporter">
+    <configuration default="false" name="Neo4jImporter" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="org.neo4j.importer.Neo4jImporter" />
+      <option name="VM_PARAMETERS" value="-Xmx2056m" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="neo4j-importer" />
+      <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Profile ">
+        <option name="myExternalizedOptions" value="&#10;additional-options2=onexit\=snapshot&#10;" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="false" name="NodesTest.shouldBlowUpIfIdNotProvidedInHeaderLine" type="JUnit" factoryName="JUnit" temporary="true">
       <module name="neo4j-importer" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -546,31 +580,6 @@
       <envs />
       <patterns />
       <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Neo4jImporter" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="org.neo4j.importer.Neo4jImporter" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="neo4j-importer" />
-      <envs />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Profile ">
-        <option name="myExternalizedOptions" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -685,10 +694,10 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.NodesTest.shouldBlowUpIfIdNotProvidedInHeaderLine" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.RelationshipsTest.should" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.RelationshipsTest.shouldCreateCollectionOfRelationships" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Neo4jImporter" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Neo4jImporter" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.NodesTest.shouldBlowUpIfIdNotProvidedInHeaderLine" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.RelationshipsTest.should" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.RelationshipsTest.shouldCreateCollectionOfRelationships" />
       <item index="4" class="java.lang.String" itemvalue="JUnit.Neo4jImporterTest.shouldImportTwoNodesAndARelationshipBetweenThem" />
     </list>
     <recent_temporary>
@@ -733,7 +742,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1680" height="1024" extended-state="0" />
+    <frame x="-1" y="24" width="1680" height="1024" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -744,17 +753,17 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32632744" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.37432188" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.6726944" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.47455752" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52529603" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.249694" sideWeight="0.47566372" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5243363" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Buildr" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32954547" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32671082" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -826,7 +835,9 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/buildfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="50" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0" />
+        <state line="11" column="50" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Relationships.java">
@@ -887,14 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/relationships.csv">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state line="0" column="28" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/neo4j/importer/Neo4jImporterTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="55" column="12" selection-start="2130" selection-end="2130" vertical-scroll-proportion="0.060364466">
@@ -902,21 +905,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/relationships.csv">
+      <provider editor-type-id="LargeFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="28" selection-start="25" selection-end="25" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="75" selection-start="1056" selection-end="1056" vertical-scroll-proportion="0.0">
+        <state line="34" column="30" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="0" selection-start="3511" selection-end="4092" vertical-scroll-proportion="0.4692483">
+        <state line="124" column="0" selection-start="4991" selection-end="4991" vertical-scroll-proportion="0.7785388">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5990#6012#0" expanded="true" />
-            <element signature="e#6118#6134#0" expanded="true" />
-            <element signature="e#6286#6302#0" expanded="true" />
+            <element signature="e#3277#3824#0" expanded="true" />
+            <element signature="e#3813#3814#0" expanded="true" />
+            <element signature="e#5513#5535#0" expanded="true" />
+            <element signature="e#5972#5988#0" expanded="true" />
+            <element signature="e#6113#6129#0" expanded="true" />
+            <element signature="e#8155#8741#0" expanded="true" />
+            <element signature="e#8730#8731#0" expanded="true" />
+            <element signature="e#8864#9397#0" expanded="true" />
+            <element signature="e#9386#9387#0" expanded="true" />
+            <element signature="e#9498#9787#0" expanded="true" />
+            <element signature="e#9776#9777#0" expanded="true" />
           </folding>
         </state>
       </provider>

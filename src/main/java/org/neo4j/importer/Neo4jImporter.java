@@ -23,19 +23,22 @@ public class Neo4jImporter {
     public void run() {
         System.out.println("Importing data into your neo4j database...");
 
+        System.out.println("Importing nodes...");
         CreateNodesResponse createNodesResponse = neo4jServer.importNodes(nodes);
-        System.out.println("Importing nodes: " + createNodesResponse.getStatus());
-        System.out.println("Importing nodes: " + createNodesResponse.getOutput());
 
-        ClientResponse createRelationshipsResponse = neo4jServer.importRelationships(relationships, createNodesResponse);
-        System.out.println("Importing relationships: " + createRelationshipsResponse.getStatus());
-        System.out.println("createRelationshipsResponse = " + createRelationshipsResponse.getEntity(String.class));
+        System.out.println("Importing relationships...");
+        neo4jServer.importRelationships( relationships, createNodesResponse );
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main( String[] args ) throws IOException {
+        int batchSize = 50;
+        if(args.length > 0 && args[0] != null) {
+            batchSize = Integer.valueOf(args[0]);
+        }
+
         Nodes nodes = new Nodes(new File("nodes.csv"));
         Relationships relationships = new Relationships(new File("relationships.csv"));
-        Neo4jServer neo4jServer = new Neo4jServer(jerseyClient(), 1);
+        Neo4jServer neo4jServer = new Neo4jServer(jerseyClient(), batchSize );
 
         new Neo4jImporter(neo4jServer, nodes, relationships).run();
     }
