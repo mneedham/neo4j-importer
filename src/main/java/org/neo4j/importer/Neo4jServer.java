@@ -9,6 +9,7 @@ import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
 
 import javax.ws.rs.core.MediaType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +49,7 @@ public class Neo4jServer {
 
         ClientResponse response = null;
         for (int i = 0; i < rels.size(); i += batchSize) {
+            System.out.println( "i = " + i );
             final Sequence<Map<String, Object>> relationshipsBatch = sequence(rels).drop(i).take(batchSize);
             response = postCypherQuery(relationshipsBatch, sequence(nodeMappings.entrySet()).filter(existsIn(relationshipsBatch)));
         }
@@ -69,25 +71,76 @@ public class Neo4jServer {
         };
     }
 
-    private ClientResponse postCypherQuery(Sequence<Map<String, Object>> relationships, Sequence<Map.Entry<String, Long>> nodeMappings) {
+    private ClientResponse postCypherQuery(Sequence<Map<String, Object>> relationships, final Sequence<Map.Entry<String, Long>> nodeMappings) {
         int numberOfNodes = batchSize * 2;
         Sequence<Pair<Number,Number>> nodePairs = range(1, numberOfNodes - 1, 2).zip(range(2, numberOfNodes, 2));
 
         String query = "START ";
-        query += StringUtils.join(nodePairs.zip(relationships).map(nodeLookup2(nodeMappings)).iterator(), ", ");
-//        query += StringUtils.join(nodeMappings.map(nodeLookup()).iterator(), ", ");
+        query += StringUtils.join(nodePairs.zip(relationships).map(nodeLookup2()).iterator(), ", ");
         query += StringUtils.join(relationships.zip(nodePairs).map(createRelationship()).iterator(), " ");
 
         ObjectNode cypherQuery = JsonNodeFactory.instance.objectNode();
         cypherQuery.put("query", query);
 
+        Sequence<Pair<Number, Number>> relationshipMappings = nodeParameterMappings( nodeMappings,
+                nodePairs.zip( relationships ) );
+
         ObjectNode params = JsonNodeFactory.instance.objectNode();
+
+        for ( Pair<Number, Number> relationshipMapping : relationshipMappings )
+        {
+            params.put(relationshipMapping.first().toString(), relationshipMapping.second().longValue());
+        }
+
         cypherQuery.put("params", params);
 
         return client.resource(clientUri).
                 accept(MediaType.APPLICATION_JSON).
                 entity(cypherQuery, MediaType.APPLICATION_JSON).
                 post(ClientResponse.class);
+    }
+
+    private Sequence<Pair<Number, Number>> nodeParameterMappings( final Sequence<Map.Entry<String, Long>> nodeMappings,
+                                                                  Sequence<Pair<Pair<Number, Number>, Map<String,
+                                                                          Object>>> relationshipMappings )
+    {
+        return relationshipMappings.flatMap( new Callable1<Pair<Pair<Number, Number>, Map<String, Object>>,
+                Iterable<Pair<Number, Number>>>()
+        {
+            @Override
+            public Iterable<Pair<Number, Number>> call( final Pair<Pair<Number, Number>, Map<String,
+                    Object>> pairMapPair ) throws Exception
+            {
+                final Map<String, Object> relationship = pairMapPair.second();
+
+                final Option<Map.Entry<String, Long>> fromId = nodeMappings.find( new Predicate<Map.Entry<String,
+                        Long>>()
+                {
+                    public boolean matches( Map.Entry<String, Long> idToNodeIdMapping )
+                    {
+                        return idToNodeIdMapping.getKey().equals( relationship.get( "from" ).toString() );
+                    }
+                } );
+
+                final Option<Map.Entry<String, Long>> toId = nodeMappings.find( new Predicate<Map.Entry<String, Long>>()
+                {
+                    public boolean matches( Map.Entry<String, Long> idToNodeIdMapping )
+                    {
+                        return idToNodeIdMapping.getKey().equals( relationship.get( "to" ).toString() );
+                    }
+                } );
+
+                ArrayList<Pair<Number, Number>> pairs = new ArrayList<Pair<Number, Number>>();
+
+                Number fromSequenceId = pairMapPair.first().first();
+                pairs.add( Pair.<Number, Number>pair( fromSequenceId, fromId.get().getValue() ) );
+
+                Number toSequenceId = pairMapPair.first().second();
+                pairs.add( Pair.<Number, Number>pair( toSequenceId, toId.get().getValue() ) );
+
+                return pairs;
+            }
+        } );
     }
 
     private Callable1<? super Pair<Map<String, Object>, Pair<Number, Number>>, ?> createRelationship() {
@@ -101,40 +154,17 @@ public class Neo4jServer {
         };
     }
 
-    private Callable1<Pair<Pair<Number, Number>, Map<String, Object>>, Object> nodeLookup2(final Sequence<Map.Entry<String, Long>> nodeMappings) {
+    private Callable1<Pair<Pair<Number, Number>, Map<String, Object>>, Object> nodeLookup2() {
         return new Callable1<Pair<Pair<Number, Number>, Map<String, Object>>, Object>() {
             public Object call(final Pair<Pair<Number, Number>, Map<String, Object>> pairMapPair) throws Exception {
-                final Option<Map.Entry<String, Long>> fromId = nodeMappings.find(new Predicate<Map.Entry<String, Long>>() {
-                    public boolean matches(Map.Entry<String, Long> idToNodeIdMapping) {
-                        return idToNodeIdMapping.getKey().equals(pairMapPair.second().get("from").toString());
-                    }
-                });
-
-                final Option<Map.Entry<String, Long>> toId = nodeMappings.find(new Predicate<Map.Entry<String, Long>>() {
-                    public boolean matches(Map.Entry<String, Long> idToNodeIdMapping) {
-                        return idToNodeIdMapping.getKey().equals(pairMapPair.second().get("to").toString());
-                    }
-                });
-
-                return String.format("node%s = node(%s), node%s=node(%s)",
+                return String.format("node%s = node({%s}), node%s=node({%s})",
                         pairMapPair.first().first(),
-                        fromId.get().getValue(),
+                        pairMapPair.first().first(),
                         pairMapPair.first().second(),
-                        toId.get().getValue());
+                        pairMapPair.first().second()                        );
             }
         };
     }
-
-//    private Callable1<? super Map<String, Object>, ?> createRelationship() {
-//        return new Callable1<Map<String, Object>, Object>() {
-//            public String call(Map<String, Object> fields) throws Exception {
-//                String sourceNode = "node" + fields.get("from").toString();
-//                String destinationNode = "node" + fields.get("to").toString();
-//                String relationshipType = fields.get("type").toString();
-//                return String.format("CREATE %s-[:%s]->%s", sourceNode, relationshipType, destinationNode);
-//            }
-//        };
-//    }
 
     private Callable1<? super Map.Entry<String, Long>, ?> nodeLookup() {
         return new Callable1<Map.Entry<String, Long>, String>() {

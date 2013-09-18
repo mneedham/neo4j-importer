@@ -27,9 +27,7 @@
           <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-bundle/1.17.1/jersey-bundle-1.17.1.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/jersey-bundle/1.17.1/jersey-bundle-1.17.1-sources.jar!/" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
@@ -74,7 +72,9 @@
           <root url="jar://$MAVEN_REPOSITORY$/com/googlecode/totallylazy/totallylazy/1049/totallylazy-1049.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MAVEN_REPOSITORY$/com/googlecode/totallylazy/totallylazy/1049/totallylazy-1049-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
