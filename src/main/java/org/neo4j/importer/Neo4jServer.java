@@ -76,31 +76,13 @@ public class Neo4jServer
             transactionResponse = client.resource( transactionalUri ).
                     accept( MediaType.APPLICATION_JSON ).
                     entity( query, MediaType.APPLICATION_JSON ).
+                    header( "X-Stream", true ).
                     post( ClientResponse.class );
         }
 
 
 
         return transactionResponse;
-    }
-
-    private Predicate<Map.Entry<String, Long>> existsIn( final Sequence<Map<String, Object>> relationshipsBatch )
-    {
-        return new Predicate<Map.Entry<String, Long>>()
-        {
-            public boolean matches( Map.Entry<String, Long> idToNodeId )
-            {
-                String id = idToNodeId.getKey();
-                for ( Map<String, Object> fields : relationshipsBatch )
-                {
-                    if ( fields.get( "to" ).toString().equals( id ) || fields.get( "from" ).toString().equals( id ) )
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }
-        };
     }
 
     private ObjectNode createStatement( Sequence<Map<String, Object>> relationships, Map<String, Long> mappings )
@@ -150,47 +132,6 @@ public class Neo4jServer
         }
         return pairs;
     }
-
-
-//        return relationshipMappings.flatMap( new Callable1<Pair<Pair<Number, Number>, Map<String, Object>>,
-//                Iterable<Pair<Number, Number>>>()
-//        {
-//            @Override
-//            public Iterable<Pair<Number, Number>> call( final Pair<Pair<Number, Number>, Map<String,
-//                    Object>> pairMapPair ) throws Exception
-//            {
-//                final Map<String, Object> relationship = pairMapPair.second();
-//
-//                final Option<Map.Entry<String, Long>> fromId = nodeMappings.find( new Predicate<Map.Entry<String,
-//                        Long>>()
-//                {
-//                    public boolean matches( Map.Entry<String, Long> idToNodeIdMapping )
-//                    {
-//                        return idToNodeIdMapping.getKey().equals( relationship.get( "from" ).toString() );
-//                    }
-//                } );
-//
-//                final Option<Map.Entry<String, Long>> toId = nodeMappings.find( new Predicate<Map.Entry<String,
-// Long>>()
-//                {
-//                    public boolean matches( Map.Entry<String, Long> idToNodeIdMapping )
-//                    {
-//                        return idToNodeIdMapping.getKey().equals( relationship.get( "to" ).toString() );
-//                    }
-//                } );
-//
-//                ArrayList<Pair<Number, Number>> pairs = new ArrayList<Pair<Number, Number>>();
-//
-//                Number fromSequenceId = pairMapPair.first().first();
-//                pairs.add( Pair.<Number, Number>pair( fromSequenceId, fromId.get().getValue() ) );
-//
-//                Number toSequenceId = pairMapPair.first().second();
-//                pairs.add( Pair.<Number, Number>pair( toSequenceId, toId.get().getValue() ) );
-//
-//                return pairs;
-//            }
-//        } );
-
 
     private Callable1<? super Pair<Map<String, Object>, Pair<Number, Number>>, ?> createRelationship()
     {
