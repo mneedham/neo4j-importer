@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c2943d6-1727-49d5-963b-367dabc5857e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" afterPath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jImporter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" afterPath="$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/neo4j-importer.iws" afterPath="$PROJECT_DIR$/neo4j-importer.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/examples/nodes.csv" afterPath="$PROJECT_DIR$/examples/nodes.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/relationships.csv" afterPath="$PROJECT_DIR$/relationships.csv" />
     </list>
     <ignored path="neo4j-importer.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Neo4jServer.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379504088559" ignored="false" />
+    <file path="/Neo4jServer.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1379512912027" ignored="false" />
     <file path="/Neo4jImporterTest.java" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377039433103" ignored="false" />
     <file path="/relationships.csv" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377030079421" ignored="false" />
     <file path="/nodes.csv" changelist="1c2943d6-1727-49d5-963b-367dabc5857e" time="1377028695237" ignored="false" />
@@ -133,21 +129,30 @@
       <file leaf-file-name="Neo4jServer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="0" selection-start="4991" selection-end="4991" vertical-scroll-proportion="0.7785388">
+            <state line="64" column="84" selection-start="2614" selection-end="2614" vertical-scroll-proportion="0.74657536">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3277#3824#0" expanded="true" />
-                <element signature="e#3813#3814#0" expanded="true" />
-                <element signature="e#5513#5535#0" expanded="true" />
-                <element signature="e#5972#5988#0" expanded="true" />
-                <element signature="e#6113#6129#0" expanded="true" />
-                <element signature="e#8155#8741#0" expanded="true" />
-                <element signature="e#8730#8731#0" expanded="true" />
-                <element signature="e#8864#9397#0" expanded="true" />
-                <element signature="e#9386#9387#0" expanded="true" />
-                <element signature="e#9498#9787#0" expanded="true" />
-                <element signature="e#9776#9777#0" expanded="true" />
+                <element signature="e#3140#3687#0" expanded="true" />
+                <element signature="e#3676#3677#0" expanded="true" />
+                <element signature="e#5122#5144#0" expanded="true" />
+                <element signature="e#5581#5597#0" expanded="true" />
+                <element signature="e#5722#5738#0" expanded="true" />
+                <element signature="e#7764#8350#0" expanded="true" />
+                <element signature="e#8339#8340#0" expanded="true" />
+                <element signature="e#8473#9006#0" expanded="true" />
+                <element signature="e#8995#8996#0" expanded="true" />
+                <element signature="e#9107#9396#0" expanded="true" />
+                <element signature="e#9385#9386#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CreateNodesResponse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/CreateNodesResponse.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="29" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -922,22 +927,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/CreateNodesResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="29" selection-start="600" selection-end="600" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/neo4j/importer/Neo4jServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="0" selection-start="4991" selection-end="4991" vertical-scroll-proportion="0.7785388">
+        <state line="64" column="84" selection-start="2614" selection-end="2614" vertical-scroll-proportion="0.74657536">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3277#3824#0" expanded="true" />
-            <element signature="e#3813#3814#0" expanded="true" />
-            <element signature="e#5513#5535#0" expanded="true" />
-            <element signature="e#5972#5988#0" expanded="true" />
-            <element signature="e#6113#6129#0" expanded="true" />
-            <element signature="e#8155#8741#0" expanded="true" />
-            <element signature="e#8730#8731#0" expanded="true" />
-            <element signature="e#8864#9397#0" expanded="true" />
-            <element signature="e#9386#9387#0" expanded="true" />
-            <element signature="e#9498#9787#0" expanded="true" />
-            <element signature="e#9776#9777#0" expanded="true" />
+            <element signature="e#3140#3687#0" expanded="true" />
+            <element signature="e#3676#3677#0" expanded="true" />
+            <element signature="e#5122#5144#0" expanded="true" />
+            <element signature="e#5581#5597#0" expanded="true" />
+            <element signature="e#5722#5738#0" expanded="true" />
+            <element signature="e#7764#8350#0" expanded="true" />
+            <element signature="e#8339#8340#0" expanded="true" />
+            <element signature="e#8473#9006#0" expanded="true" />
+            <element signature="e#8995#8996#0" expanded="true" />
+            <element signature="e#9107#9396#0" expanded="true" />
+            <element signature="e#9385#9386#0" expanded="true" />
           </folding>
         </state>
       </provider>

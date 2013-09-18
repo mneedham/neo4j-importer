@@ -11,6 +11,7 @@ import org.codehaus.jackson.node.ObjectNode;
 
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -51,22 +52,17 @@ public class Neo4jServer
     public ClientResponse importRelationships( Relationships relationships, CreateNodesResponse createNodesResponse )
     {
         Map<String, Long> nodeMappings = createNodesResponse.nodeMappings();
-        Sequence<Map<String, Object>> rels = sequence( relationships.get() );
+        Sequence<Map<String, Object>> rels = sequence( relationships.get() ).take(1000);
+        int numberOfRelationshipsToImport = rels.size();
+
 
         ObjectNode query = JsonNodeFactory.instance.objectNode();
         ArrayNode statements = JsonNodeFactory.instance.arrayNode();
 
-        for ( int i = 0; i < rels.size(); i += batchSize )
+        for ( int i = 0; i < numberOfRelationshipsToImport; i += batchSize )
         {
-            long startLoop = System.currentTimeMillis();
-
             final Sequence<Map<String, Object>> relationshipsBatch = rels.drop( i ).take( batchSize );
-
-            Sequence<Map.Entry<String, Long>> filteredNodeMappings = sequence( nodeMappings.entrySet() ).filter(
-                    existsIn( relationshipsBatch ) );
-
-
-            ObjectNode statement = createStatement( relationshipsBatch, filteredNodeMappings, nodeMappings );
+            ObjectNode statement = createStatement( relationshipsBatch, nodeMappings );
             statements.add( statement );
         }
 
@@ -99,8 +95,7 @@ public class Neo4jServer
         };
     }
 
-    private ObjectNode createStatement( Sequence<Map<String, Object>> relationships, final Sequence<Map.Entry<String,
-            Long>> nodeMappings, Map<String, Long> mappings )
+    private ObjectNode createStatement( Sequence<Map<String, Object>> relationships, Map<String, Long> mappings )
     {
         int numberOfNodes = batchSize * 2;
         Sequence<Pair<Number, Number>> nodePairs = range( 1, numberOfNodes - 1, 2 ).zip( range( 2, numberOfNodes, 2 ) );
@@ -112,7 +107,7 @@ public class Neo4jServer
         ObjectNode cypherQuery = JsonNodeFactory.instance.objectNode();
         cypherQuery.put( "statement", query );
 
-        List<Pair<Number, Number>> relationshipMappings = nodeParameterMappings( nodeMappings,
+        List<Pair<Number, Number>> relationshipMappings = nodeParameterMappings(
                 nodePairs.zip( relationships ), mappings );
 
         ObjectNode params = JsonNodeFactory.instance.objectNode();
@@ -127,9 +122,8 @@ public class Neo4jServer
         return cypherQuery;
     }
 
-    private List<Pair<Number, Number>> nodeParameterMappings( final Sequence<Map.Entry<String, Long>> nodeMappings,
-                                                              final Sequence<Pair<Pair<Number, Number>, Map<String,
-                                                                      Object>>> relationshipMappings, Map<String,
+    private List<Pair<Number, Number>> nodeParameterMappings( final Sequence<Pair<Pair<Number, Number>, Map<String,
+            Object>>> relationshipMappings, Map<String,
             Long> mappings )
     {
         List<Pair<Number, Number>> pairs = new ArrayList<Pair<Number, Number>>();
