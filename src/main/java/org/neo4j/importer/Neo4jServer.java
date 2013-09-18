@@ -11,7 +11,6 @@ import org.codehaus.jackson.node.ObjectNode;
 
 import javax.ws.rs.core.MediaType;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,10 +25,12 @@ public class Neo4jServer
     private String clientUri = "http://localhost:7474/db/data/cypher";
     private String transactionalUri = "http://localhost:7474/db/data/transaction/commit";
     private int batchSize;
+    private int batchWithinBatchSize;
 
-    public Neo4jServer( Client client, int batchSize )
+    public Neo4jServer( Client client, int batchSize, int batchWithinBatchSize )
     {
         this.batchSize = batchSize;
+        this.batchWithinBatchSize = batchWithinBatchSize;
         this.client = client;
     }
 
@@ -52,26 +53,33 @@ public class Neo4jServer
     public ClientResponse importRelationships( Relationships relationships, CreateNodesResponse createNodesResponse )
     {
         Map<String, Long> nodeMappings = createNodesResponse.nodeMappings();
-        Sequence<Map<String, Object>> rels = sequence( relationships.get() ).take(1000);
+        Sequence<Map<String, Object>> rels = sequence( relationships.get() );
         int numberOfRelationshipsToImport = rels.size();
 
+        ClientResponse transactionResponse = null;
+        for ( int i = 0; i < numberOfRelationshipsToImport; i += batchSize ) {
+            Sequence<Map<String, Object>> batchRels = rels.drop( i ).take( batchSize );
 
-        ObjectNode query = JsonNodeFactory.instance.objectNode();
-        ArrayNode statements = JsonNodeFactory.instance.arrayNode();
+            ObjectNode query = JsonNodeFactory.instance.objectNode();
+            ArrayNode statements = JsonNodeFactory.instance.arrayNode();
+            for ( int j = 0; j < batchSize; j += batchWithinBatchSize )
+            {
+                {
+                    final Sequence<Map<String, Object>> relationshipsBatch = batchRels.drop( j ).take( batchWithinBatchSize );
+                    ObjectNode statement = createStatement( relationshipsBatch, nodeMappings );
+                    statements.add( statement );
+                }
+            }
 
-        for ( int i = 0; i < numberOfRelationshipsToImport; i += batchSize )
-        {
-            final Sequence<Map<String, Object>> relationshipsBatch = rels.drop( i ).take( batchSize );
-            ObjectNode statement = createStatement( relationshipsBatch, nodeMappings );
-            statements.add( statement );
+            query.put( "statements", statements );
+
+            transactionResponse = client.resource( transactionalUri ).
+                    accept( MediaType.APPLICATION_JSON ).
+                    entity( query, MediaType.APPLICATION_JSON ).
+                    post( ClientResponse.class );
         }
 
-        query.put( "statements", statements );
 
-        ClientResponse transactionResponse = client.resource( transactionalUri ).
-                accept( MediaType.APPLICATION_JSON ).
-                entity( query, MediaType.APPLICATION_JSON ).
-                post( ClientResponse.class );
 
         return transactionResponse;
     }

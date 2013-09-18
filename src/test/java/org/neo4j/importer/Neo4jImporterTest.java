@@ -53,7 +53,7 @@ public class Neo4jImporterTest {
 
         when(relationships.get()).thenReturn(relationshipsProperties);
 
-        new Neo4jImporter(new Neo4jServer(client, 1), nodes, relationships).run();
+        new Neo4jImporter(new Neo4jServer(client, 1, 1 ), nodes, relationships).run();
 
         String query = " START n = node(*)";
         query       += " MATCH n-[:FRIEND_OF]->p2";

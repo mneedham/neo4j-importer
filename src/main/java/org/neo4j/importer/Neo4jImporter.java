@@ -1,7 +1,6 @@
 package org.neo4j.importer;
 
 import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
@@ -36,9 +35,14 @@ public class Neo4jImporter {
             batchSize = Integer.valueOf(args[0]);
         }
 
+        int batchWithinBatchSize = 25;
+        if(args.length > 1 && args[1] != null) {
+            batchWithinBatchSize = Integer.valueOf(args[0]);
+        }
+
         Nodes nodes = new Nodes(new File("nodes.csv"));
         Relationships relationships = new Relationships(new File("relationships.csv"));
-        Neo4jServer neo4jServer = new Neo4jServer(jerseyClient(), batchSize );
+        Neo4jServer neo4jServer = new Neo4jServer(jerseyClient(), batchSize, batchWithinBatchSize );
 
         new Neo4jImporter(neo4jServer, nodes, relationships).run();
     }
