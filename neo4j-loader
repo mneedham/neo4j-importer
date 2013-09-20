@@ -1,0 +1,3 @@
+time java -Xmx1056m -jar target/neo4j-importer-uberjar-0.1.0.jar 200 50
+
+

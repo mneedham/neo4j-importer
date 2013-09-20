@@ -11,12 +11,12 @@ public class Neo4jImporter {
 
     private Neo4jServer neo4jServer;
     private Nodes nodes;
-    private Relationships relationships;
+    private RelationshipsParser relationshipsParser;
 
-    public Neo4jImporter(Neo4jServer neo4jServer, Nodes nodes, Relationships relationships) {
+    public Neo4jImporter(Neo4jServer neo4jServer, Nodes nodes, RelationshipsParser relationshipsParser ) {
         this.neo4jServer = neo4jServer;
         this.nodes = nodes;
-        this.relationships = relationships;
+        this.relationshipsParser = relationshipsParser;
     }
 
     public void run() {
@@ -26,7 +26,7 @@ public class Neo4jImporter {
         CreateNodesResponse createNodesResponse = neo4jServer.importNodes(nodes);
 
         System.out.println("Importing relationships...");
-        neo4jServer.importRelationships( relationships, createNodesResponse );
+        neo4jServer.importRelationships( relationshipsParser, createNodesResponse );
     }
 
     public static void main( String[] args ) throws IOException {
@@ -41,10 +41,10 @@ public class Neo4jImporter {
         }
 
         Nodes nodes = new Nodes(new File("nodes.csv"));
-        Relationships relationships = new Relationships(new File("relationships.csv"));
+        RelationshipsParser relationshipsParser = new RelationshipsParser(new File("relationships.csv"));
         Neo4jServer neo4jServer = new Neo4jServer(jerseyClient(), batchSize, batchWithinBatchSize );
 
-        new Neo4jImporter(neo4jServer, nodes, relationships).run();
+        new Neo4jImporter(neo4jServer, nodes, relationshipsParser ).run();
     }
 
     private static Client jerseyClient() {

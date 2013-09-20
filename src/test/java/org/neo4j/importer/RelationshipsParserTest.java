@@ -10,10 +10,11 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class RelationshipsTest {
+public class RelationshipsParserTest
+{
     @Test
     public void shouldCreateCollectionOfRelationships() {
-        Relationships relationships = new Relationships(new File("src/resources/relationships.csv"));
+        RelationshipsParser relationshipsParser = new RelationshipsParser(new File("src/resources/relationships.csv"));
 
         List<Map<String,Object>> expectedRelationships = new ArrayList<Map<String, Object>>();
 
@@ -25,6 +26,6 @@ public class RelationshipsTest {
 
         expectedRelationships.add(relationship);
 
-        assertEquals(expectedRelationships, relationships.get());
+        assertEquals(expectedRelationships, relationshipsParser.relationships());
     }
 }

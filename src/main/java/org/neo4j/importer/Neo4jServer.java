@@ -1,6 +1,13 @@
 package org.neo4j.importer;
 
-import com.googlecode.totallylazy.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import javax.ws.rs.core.MediaType;
+
+import com.googlecode.totallylazy.Callable1;
+import com.googlecode.totallylazy.Pair;
+import com.googlecode.totallylazy.Sequence;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import org.apache.commons.lang.StringUtils;
@@ -9,18 +16,16 @@ import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
 
-import javax.ws.rs.core.MediaType;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import static com.googlecode.totallylazy.Sequences.map;
 import static com.googlecode.totallylazy.Sequences.sequence;
 import static com.googlecode.totallylazy.numbers.Numbers.range;
 
 
 public class Neo4jServer
 {
+    private static final String NODE_LOOKUP = "node%s = node({%s}), node%s=node({%s})";
+    private static final String CREATE_RELATIONSHIP = " CREATE %s-[:%s]->%s";
+    private static final String CREATE_NODE = "CREATE (node {properties}) RETURN node.id, ID(node) AS nodeId";
+
     private Client client;
     private String clientUri = "http://localhost:7474/db/data/cypher";
     private String transactionalUri = "http://localhost:7474/db/data/transaction/commit";
@@ -37,7 +42,7 @@ public class Neo4jServer
     public CreateNodesResponse importNodes( Nodes nodes )
     {
         ObjectNode cypherQuery = JsonNodeFactory.instance.objectNode();
-        cypherQuery.put( "query", "CREATE (node {properties}) RETURN node.id, ID(node) AS nodeId" );
+        cypherQuery.put( "query", CREATE_NODE );
 
         ObjectNode properties = JsonNodeFactory.instance.objectNode();
         properties.put( "properties", nodes.queryParameters() );
@@ -50,16 +55,18 @@ public class Neo4jServer
         return new CreateNodesResponse( clientResponse.getStatus(), clientResponse.getEntity( JsonNode.class ) );
     }
 
-    public ClientResponse importRelationships( Relationships relationships, CreateNodesResponse createNodesResponse )
+    public ClientResponse importRelationships( RelationshipsParser relationshipsParser, CreateNodesResponse createNodesResponse )
     {
         Map<String, Long> nodeMappings = createNodesResponse.nodeMappings();
-        Sequence<Map<String, Object>> rels = sequence( relationships.get() );
+        Sequence<Map<String, Object>> rels = sequence( relationshipsParser.relationships() );
+
         int numberOfRelationshipsToImport = rels.size();
 
         ClientResponse transactionResponse = null;
         for ( int i = 0; i < numberOfRelationshipsToImport; i += batchSize ) {
             Sequence<Map<String, Object>> batchRels = rels.drop( i ).take( batchSize );
 
+            long beforeBuildingQuery = System.currentTimeMillis();
             ObjectNode query = JsonNodeFactory.instance.objectNode();
             ArrayNode statements = JsonNodeFactory.instance.arrayNode();
             for ( int j = 0; j < batchSize; j += batchWithinBatchSize )
@@ -72,12 +79,15 @@ public class Neo4jServer
             }
 
             query.put( "statements", statements );
+            System.out.println( "building query: " + (System.currentTimeMillis() - beforeBuildingQuery ));
 
+            long beforePosting = System.currentTimeMillis();
             transactionResponse = client.resource( transactionalUri ).
                     accept( MediaType.APPLICATION_JSON ).
                     entity( query, MediaType.APPLICATION_JSON ).
                     header( "X-Stream", true ).
                     post( ClientResponse.class );
+            System.out.println( "to neo and back: " + (System.currentTimeMillis() - beforePosting ));
         }
 
 
@@ -91,7 +101,7 @@ public class Neo4jServer
         Sequence<Pair<Number, Number>> nodePairs = range( 1, numberOfNodes - 1, 2 ).zip( range( 2, numberOfNodes, 2 ) );
 
         String query = "START ";
-        query += StringUtils.join( nodePairs.zip( relationships ).map( nodeLookup2() ).iterator(), ", " );
+        query += StringUtils.join( nodePairs.zip( relationships ).map( nodeLookup() ).iterator(), ", " );
         query += StringUtils.join( relationships.zip( nodePairs ).map( createRelationship() ).iterator(), " " );
 
         ObjectNode cypherQuery = JsonNodeFactory.instance.objectNode();
@@ -142,33 +152,22 @@ public class Neo4jServer
                 String sourceNode = "node" + mapPairPair.second().first();
                 String destinationNode = "node" + mapPairPair.second().second();
                 String relationshipType = mapPairPair.first().get( "type" ).toString();
-                return String.format( " CREATE %s-[:%s]->%s", sourceNode, relationshipType, destinationNode );
+                return String.format( CREATE_RELATIONSHIP, sourceNode, relationshipType, destinationNode );
             }
         };
     }
 
-    private Callable1<Pair<Pair<Number, Number>, Map<String, Object>>, Object> nodeLookup2()
+    private Callable1<Pair<Pair<Number, Number>, Map<String, Object>>, Object> nodeLookup()
     {
         return new Callable1<Pair<Pair<Number, Number>, Map<String, Object>>, Object>()
         {
             public Object call( final Pair<Pair<Number, Number>, Map<String, Object>> pairMapPair ) throws Exception
             {
-                return String.format( "node%s = node({%s}), node%s=node({%s})",
+                return String.format( NODE_LOOKUP,
                         pairMapPair.first().first(),
                         pairMapPair.first().first(),
                         pairMapPair.first().second(),
                         pairMapPair.first().second() );
-            }
-        };
-    }
-
-    private Callable1<? super Map.Entry<String, Long>, ?> nodeLookup()
-    {
-        return new Callable1<Map.Entry<String, Long>, String>()
-        {
-            public String call( Map.Entry<String, Long> mapping ) throws Exception
-            {
-                return String.format( "node%s = node(%s)", mapping.getKey(), mapping.getValue().toString() );
             }
         };
     }

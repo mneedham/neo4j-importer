@@ -37,7 +37,7 @@ public class Neo4jImporterTest {
         Client client = jerseyClient();
 
         Nodes nodes = mock(Nodes.class);
-        Relationships relationships = mock(Relationships.class);
+        RelationshipsParser relationshipsParser = mock(RelationshipsParser.class);
 
         ArrayNode createNodesParameters = JsonNodeFactory.instance.arrayNode();
         createNodesParameters.add(node("1", "Mark"));
@@ -51,9 +51,9 @@ public class Neo4jImporterTest {
         relationshipsProperties.add(relationship("1", "2", "FRIEND_OF"));
         relationshipsProperties.add(relationship("2", "3", "FRIEND_OF"));
 
-        when(relationships.get()).thenReturn(relationshipsProperties);
+        when( relationshipsParser.relationships()).thenReturn(relationshipsProperties);
 
-        new Neo4jImporter(new Neo4jServer(client, 1, 1 ), nodes, relationships).run();
+        new Neo4jImporter(new Neo4jServer(client, 1, 1 ), nodes, relationshipsParser ).run();
 
         String query = " START n = node(*)";
         query       += " MATCH n-[:FRIEND_OF]->p2";

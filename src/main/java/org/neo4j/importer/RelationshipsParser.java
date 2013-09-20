@@ -13,14 +13,15 @@ import java.util.*;
 
 import static java.util.Arrays.*;
 
-public class Relationships {
+public class RelationshipsParser
+{
     private File relationshipsPath;
 
-    public Relationships(File relationshipsPath) {
+    public RelationshipsParser( File relationshipsPath ) {
         this.relationshipsPath = relationshipsPath;
     }
 
-    public List<Map<String, Object>> get() {
+    public List<Map<String, Object>> relationships() {
         List<Map<String, Object>> relationships = new ArrayList<Map<String, Object>>();
 
         try {
